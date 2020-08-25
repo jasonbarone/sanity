@@ -81,7 +81,6 @@ export default function PortableTextInput(props: Props) {
   // States
   const [isActive, setIsActive] = useState(false)
   const [objectEditData, setObjectEditData]: [ObjectEditData, any] = useState(null)
-  const [showValidationTooltip, setShowValidationTooltip] = useState(false)
   const [initialSelection, setInitialSelection] = useState(undefined)
 
   // This will open the editing interfaces automatically according to the focusPath.
@@ -163,14 +162,6 @@ export default function PortableTextInput(props: Props) {
       }
     }
   }, [selection, initialSelection, objectEditData])
-
-  function handleCloseValidationResults(): void {
-    setShowValidationTooltip(false)
-  }
-
-  function handleToggleValidationResults(): void {
-    setShowValidationTooltip(!showValidationTooltip)
-  }
 
   function handleToggleFullscreen(): void {
     setInitialSelection(PortableTextEditor.getSelection(editor))
@@ -329,13 +320,11 @@ export default function PortableTextInput(props: Props) {
       isFullscreen={isFullscreen}
       markers={markers}
       onBlur={onBlur}
-      onCloseValidationResults={handleCloseValidationResults}
       onFocus={onFocus}
       onFormBuilderChange={onChange}
       onCopy={onCopy}
       onPaste={onPaste}
       onToggleFullscreen={handleToggleFullscreen}
-      onToggleValidationResults={handleToggleValidationResults}
       portableTextFeatures={ptFeatures}
       readOnly={isActive === false || readOnly}
       renderAnnotation={renderAnnotation}
@@ -343,7 +332,6 @@ export default function PortableTextInput(props: Props) {
       renderBlockActions={renderBlockActions}
       renderChild={renderChild}
       renderCustomMarkers={renderCustomMarkers}
-      showValidationTooltip={showValidationTooltip}
       value={value}
     />
   )
